@@ -1,0 +1,5 @@
+class ChangeMessageToDescriptionInTickets < ActiveRecord::Migration[5.2]
+  def change
+    rename_column :tickets, :message, :description
+  end
+end
