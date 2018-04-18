@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      month_date_year_concise: '%m.%d.%Y'
+  

@@ -2,29 +2,36 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Tickets</h2>
+
+      <ul>
+        <li><%= link_to "View All Tickets", root_path() %></li>
+        <li><%= link_to "View Tickets Assigned To Me", root_path(:assignee_id => current_user.id) %></li>
+      </ul>
+
       <% if @tickets.count > 0 %>
-
-          <% @tickets.each do |ticket| %>
-            <div class="row">
-              <div class="col-md-6">
-                <%= link_to ticket.title, ticket_path(ticket) %>
-              </div>
-              <div class="col-md-6 pull-right">
-                <%= link_to 'Edit', edit_ticket_path(ticket) %> | <%= link_to 'Delete', ticket_path(ticket),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' } %>
-              </div>
-            </div>
-
-          <% end %>
-
-        </table>
-
-      <% else %>
-
-        <%= link_to 'Want to create a ticket?', new_ticket_url %>
+        <h4>No Rush</h4>
+        <hr>
+        <% @tickets.each do |ticket| %>
+          <%= render :partial => '/tickets/row', :locals => { :ticket => ticket } %>
+        <% end %>
 
       <% end %>
+
+      <% if @sorted_tickets.count > 0 %>
+
+        <% @sorted_tickets.each do |due_date, tickets| %>
+          <hr>
+          <h4><%= due_date %></h4>
+          <hr>
+          <% tickets.each do |ticket| %>
+            <%= render :partial => '/tickets/row', :locals => { :ticket => ticket } %>
+          <% end %>
+        <% end %>
+
+      <% end %>
+
+      <hr>
+      <strong><%= link_to 'Want to create a ticket?', new_ticket_url %></strong>
 
     </div>
   </div>

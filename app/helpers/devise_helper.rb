@@ -17,4 +17,14 @@ module DeviseHelper
 
     html.html_safe
   end
+
+  def devise_get_name(id)
+    id = id.to_i
+    user = User.find(id)
+    if user.display_name?
+      user.display_name
+    else
+      user.email
+    end
+  end
 end

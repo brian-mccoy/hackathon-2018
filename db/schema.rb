@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_17_150235) do
+ActiveRecord::Schema.define(version: 2018_04_18_160110) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "user_id"
+    t.text "description"
+    t.integer "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_comments_on_ticket_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "project_id", null: false
+  end
+
+  create_table "ticket_comments", force: :cascade do |t|
+    t.string "user_id"
+    t.text "description"
+    t.integer "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_ticket_comments_on_ticket_id"
+  end
 
   create_table "tickets", force: :cascade do |t|
     t.string "title"
@@ -19,6 +49,9 @@ ActiveRecord::Schema.define(version: 2018_04_17_150235) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "assignee_id"
+    t.date "due_date"
+    t.string "status"
+    t.integer "project_id"
   end
 
   create_table "users", force: :cascade do |t|

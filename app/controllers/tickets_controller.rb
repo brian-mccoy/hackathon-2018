@@ -20,6 +20,7 @@ class TicketsController < ApplicationController
   end
 
   def edit
+    console
     @ticket = Ticket.find(params[:id])
   end
 
@@ -64,7 +65,7 @@ class TicketsController < ApplicationController
 
   private
     def ticket_params
-      params.require(:ticket).permit(:title, :description, :assignee_id)
+      params.require(:ticket).permit(:title, :description, :assignee_id, :due_date, :status, :project)
     end
 
 end

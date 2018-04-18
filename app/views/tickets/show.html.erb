@@ -8,11 +8,11 @@
         </div>
         <div class="col-md-6">
 
-          <%= link_to 'Edit', edit_ticket_path(@ticket) %>
-
-          <%= link_to 'Delete', ticket_path(@ticket),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' } %>
+          <% if policy(@ticket).update? %>
+            <%= link_to 'Edit', edit_ticket_path(@ticket) %> | <%= link_to 'Delete', ticket_path(@ticket),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+          <% end %>
 
         </div>
       </div>
@@ -30,6 +30,37 @@
         <p>
           <strong>Assignee:</strong>
           <%= @assignee.email %>
+        </p>
+      <% end %>
+
+      <% if @ticket.due_date %>
+        <p>
+          <strong>Due date:</strong>
+          <%= l @ticket.due_date, format: :month_date_year_concise %>
+
+        </p>
+      <% end %>
+
+      <p>
+        <strong>Status:</strong>
+        <%= @ticket.status %>
+      </p>
+
+      <hr>
+
+      <h3>Comments</h3>
+      <% @ticket.comments.each do |comment| %>
+        <%= render comment %>
+      <% end %>
+
+      <h3>Add a comment:</h3>
+      <%= form_with(model: [ @ticket, @ticket.comments.build ], local: true) do |form| %>
+        <p>
+          <%= form.label :description %><br>
+          <%= form.text_area :description, class: 'form-control' %>
+        </p>
+        <p>
+          <%= form.submit %>
         </p>
       <% end %>
 

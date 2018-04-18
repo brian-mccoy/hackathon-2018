@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="row">
+        <div class="col-md-6">
+          <h2><%= @project.title  %></h2>
+          <% if @project.description %>
+            <p><%= @project.description %></p>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to 'Edit', edit_project_path(@project) %> | <%= link_to 'Delete', project_path(@project),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+
+
+        </div>
+      </div>
+
+      <hr>
+
+      <h3>Project Details</h3>
+
+      <% if @project.users %>
+        <p><strong>Project Team: </strong>
+        <%= @project.users.map(&:display_name).join(', ') %></p>
+      <% end %>
+
+      <hr>
+
+      <h3>Project Tickets</h3>
+
+      
+
+    </div>
+  </div>
+</div>

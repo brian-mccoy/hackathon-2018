@@ -1,0 +1,14 @@
+<article class="ticket-row">
+
+  <section class="title"><%= link_to ticket.title, ticket_path(ticket) %></section>
+
+  <% if ticket.assignee_id? %>
+    <section class="assignee"><strong>Assigned to </strong><%= devise_get_name(ticket.assignee_id) %></section>
+  <% end %>
+
+  <% if policy(ticket).update? %>
+    <%= link_to 'Edit', edit_ticket_path(ticket) %> | <%= link_to 'Delete', ticket_path(ticket),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</article>

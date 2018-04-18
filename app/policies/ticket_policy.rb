@@ -4,12 +4,15 @@ class TicketPolicy
     @ticket = model
   end
   def edit?
-    user_who_can_change_post
+    user_who_can_change_ticket
   end
   def update?
-    user_who_can_change_post
+    user_who_can_change_ticket
   end
-  def user_who_can_change_post
+  def destroy?
+    user_who_can_change_ticket
+  end
+  def user_who_can_change_ticket
     @ticket.user_id == @current_user.id
   end
 end
