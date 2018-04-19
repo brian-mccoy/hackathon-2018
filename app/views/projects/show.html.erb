@@ -1,38 +1,43 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
+<div class="inner">
+  <section class="generic">
 
-      <div class="row">
-        <div class="col-md-6">
-          <h2><%= @project.title  %></h2>
-          <% if @project.description %>
-            <p><%= @project.description %></p>
-          <% end %>
-        </div>
-        <div class="col-md-6">
-          <%= link_to 'Edit', edit_project_path(@project) %> | <%= link_to 'Delete', project_path(@project),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
+    <section class="heading">
+      <h2><%= @project.title  %></h2>
+      <nav><%= link_to 'Edit', edit_project_path(@project), class: 'highlight blue' %> <%= link_to 'Delete', project_path(@project),
+          method: :delete,
+          data: { confirm: 'Are you sure?' },
+          class: 'highlight blue' %></nav>
+    </section>
 
+    <% if @project.description? %>
+      <section class="cell margin-bottom"><p><%= @project.description %></p></section>
+    <% end %>
 
-        </div>
+    <h2 class="margin-bottom">Project Details</h2>
+
+    <div class="cell margin-bottom"><p><strong>Team:</strong> <%= link_to @team.title, team_path(@team) %></div>
+
+    <% if @team.users %>
+      <div class="cell margin-bottom">
+        <strong>Members: </strong><%= @team.users.map(&:display_name).join(', ') %>
       </div>
+    <% end %>
 
-      <hr>
+    <section class="heading">
+      <h2>Tickets</h2>
+      <nav><%= link_to 'Create Ticket', new_ticket_url(:project_id => @project.id), class: 'highlight blue' %></nav>
+    </section>
 
-      <h3>Project Details</h3>
+    <% if @tickets.any? %>
+      <div class="tickets-list">
+        <% @tickets.each do |ticket| %>
+          <%= render :partial => '/tickets/row', :locals => { :ticket => ticket } %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="cell">Looks like you don't have any tickets. <%= link_to 'Would you like to create one?', new_ticket_url(:project_id => @project.id) %></div>
+    <% end %>
 
-      <% if @project.users %>
-        <p><strong>Project Team: </strong>
-        <%= @project.users.map(&:display_name).join(', ') %></p>
-      <% end %>
+  </section>
 
-      <hr>
-
-      <h3>Project Tickets</h3>
-
-      
-
-    </div>
-  </div>
 </div>

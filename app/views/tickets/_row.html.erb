@@ -1,14 +1,13 @@
 <article class="ticket-row">
 
-  <section class="title"><%= link_to ticket.title, ticket_path(ticket) %></section>
+  <section class="ticket-title"><%= link_to ticket.title, ticket_path(ticket) %></section>
+  <section class="ticket-details">
 
-  <% if ticket.assignee_id? %>
-    <section class="assignee"><strong>Assigned to </strong><%= devise_get_name(ticket.assignee_id) %></section>
-  <% end %>
+    <% if ticket.assignee_id? %>
+      <section class="assignee highlight"><%= devise_get_name(ticket.assignee_id) %></section>
+    <% end %>
 
-  <% if policy(ticket).update? %>
-    <%= link_to 'Edit', edit_ticket_path(ticket) %> | <%= link_to 'Delete', ticket_path(ticket),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-  <% end %>
+    <%= link_to Project.find(ticket.project_id).title, project_url(ticket.project_id), class: 'highlight blue' %>
+    <%= link_to Team.find(Project.find(ticket.project_id).team_id).title, team_url(Team.find(Project.find(ticket.project_id).team_id).id), class: 'highlight blue' %>
+  </section><!-- / ticket-details -->
 </article>

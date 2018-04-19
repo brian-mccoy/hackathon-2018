@@ -1,30 +1,23 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
+<div class="inner">
+  <section class="generic">
 
-      <div class="row">
-        <div class="col-md-6">
-          <h2><%= @ticket.title  %></h2>
-        </div>
-        <div class="col-md-6">
+    <section class="heading">
+      <h2><%= @ticket.title  %></h2>
+      <nav><%= link_to 'Edit', edit_ticket_path(@ticket), class: 'highlight blue' %> <%= link_to 'Delete', ticket_path(@ticket),
+          method: :delete,
+          data: { confirm: 'Are you sure?' },
+          class: 'highlight blue' %></nav>
+    </section>
 
-          <% if policy(@ticket).update? %>
-            <%= link_to 'Edit', edit_ticket_path(@ticket) %> | <%= link_to 'Delete', ticket_path(@ticket),
-                        method: :delete,
-                        data: { confirm: 'Are you sure?' } %>
-          <% end %>
+    <% if @ticket.description? %>
+      <section class="cell margin-bottom">
+        <%= @ticket.description %>
+      </section>
+    <% end %>
 
-        </div>
-      </div>
+    <h2 class="margin-bottom">Ticket Details</h2>
 
-
-      <hr>
-
-      <%= @ticket.description %>
-
-      <hr>
-
-      <h3>Ticket Details</h3>
+    <div class="cell ticket-details margin-bottom">
 
       <% if @assignee %>
         <p>
@@ -46,24 +39,38 @@
         <%= @ticket.status %>
       </p>
 
-      <hr>
-
-      <h3>Comments</h3>
-      <% @ticket.comments.each do |comment| %>
-        <%= render comment %>
+      <% if @ticket.project_id %>
+        <p>
+          <strong>Project:</strong>
+          <%= link_to Project.find(@ticket.project_id).title, project_path(@ticket.project_id) %>
+        </p>
       <% end %>
 
-      <h3>Add a comment:</h3>
+    </div>
+
+    <% if @ticket.comments.any? %>
+      <h2 class="margin-bottom">Comments</h2>
+      <div class="comments-list margin-bottom">
+        <% @ticket.comments.each do |comment| %>
+          <%= render comment %>
+        <% end %>
+      </div>
+    <% end %>
+
+
+    <h2 class="margin-bottom">Add a Comment</h2>
+    <div class="cell form-styles">
       <%= form_with(model: [ @ticket, @ticket.comments.build ], local: true) do |form| %>
         <p>
           <%= form.label :description %><br>
           <%= form.text_area :description, class: 'form-control' %>
         </p>
-        <p>
+        <div class="actions">
           <%= form.submit %>
-        </p>
+        </div>
       <% end %>
-
     </div>
-  </div>
+
+  </section>
+
 </div>

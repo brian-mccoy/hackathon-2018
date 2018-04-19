@@ -24,11 +24,7 @@
     <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :user_ids, 'Users' %><br>
-    <%= form.collection_check_boxes :user_ids, User.all, :id, :display_name %>
-  </div>
-
+  <%= form.hidden_field :team_id, :value => params[:team_id] %>
 
   <%= form.submit %>
 

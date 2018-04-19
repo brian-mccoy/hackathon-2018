@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
       @sorted_tickets = Ticket.where(assignee_id: params[:assignee_id]).where.not(due_date: nil).group_by { |ticket| ticket.due_date.strftime("%B %Y") } # get tickets with due dates sorted by month
     else
       @tickets = Ticket.where(due_date: nil) # get tickets with no due date
-      @sorted_tickets = Ticket.where.not(due_date: nil).group_by { |ticket| ticket.due_date.strftime("%B %Y") } # get tickets with due dates sorted by month
+      @sorted_tickets = Ticket.where.not(due_date: nil).group_by { |ticket| ticket.due_date.strftime("%B %d %Y") } # get tickets with due dates sorted by month
     end
 
   end

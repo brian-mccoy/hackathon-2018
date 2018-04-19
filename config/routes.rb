@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects
+  resources :teams
 
   root 'dashboard#index'
 end

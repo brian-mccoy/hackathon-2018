@@ -12,7 +12,277 @@
  *
  *= require_tree .
  *= require_self
- *= require bootstrap-datepicker3
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
+
+ /* http://meyerweb.com/eric/tools/css/reset/
+    v2.0 | 20110126
+    License: none (public domain)
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+ html, body, div, span, applet, object, iframe,
+ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+ a, abbr, acronym, address, big, cite, code,
+ del, dfn, em, img, ins, kbd, q, s, samp,
+ small, strike, strong, sub, sup, tt, var,
+ b, u, i, center,
+ dl, dt, dd, ol, ul, li,
+ fieldset, form, label, legend,
+ table, caption, tbody, tfoot, thead, tr, th, td,
+ article, aside, canvas, details, embed,
+ figure, figcaption, footer, header, hgroup,
+ menu, nav, output, ruby, section, summary,
+ time, mark, audio, video {
+ 	margin: 0;
+ 	padding: 0;
+ 	border: 0;
+ 	font-size: 100%;
+ 	font: inherit;
+ 	vertical-align: baseline;
+ }
+ /* HTML5 display-role reset for older browsers */
+ article, aside, details, figcaption, figure,
+ footer, header, hgroup, menu, nav, section {
+ 	display: block;
+ }
+ body {
+ 	line-height: 1;
+ }
+ ol, ul {
+ 	list-style: none;
+ }
+ blockquote, q {
+ 	quotes: none;
+ }
+ blockquote:before, blockquote:after,
+ q:before, q:after {
+ 	content: '';
+ 	content: none;
+ }
+ table {
+ 	border-collapse: collapse;
+ 	border-spacing: 0;
+ }
+
+ body {
+   background: #D6D9E5;
+   font-family: "Open Sans", sans-serif;
+ }
+
+.inner {
+  margin: 0 auto;
+  max-width: 1170px;
+}
+
+header {
+  background: #2D384D;
+  padding: 10px 20px;
+
+  .inner {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: block;
+    width: 100px;
+
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
+  a {
+    color: #fff;
+    padding: 5px 20px;
+    text-decoration: none;
+  }
+}
+
+.dashboard {
+  padding: 80px 20px;
+}
+
+.title-card {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  .title {
+    background: #39465E;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 20px;
+    border: 1px solid #EEF0F4;
+    border-bottom: 0;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid #EEF0F4;
+  }
+
+}
+
+.tickets-list {
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border: 1px solid #EEF0F4;
+}
+
+.ticket-row {
+  border-bottom: 1px solid #EEF0F4;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .ticket-title a {
+    color: #6FADE9;
+    font-size: 18px;
+    text-decoration: none;
+  }
+}
+
+.highlight {
+  background: #8E96B0;
+  color: #fff;
+  padding: 5px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  text-decoration: none;
+
+  &.blue {
+    background: #6FADE9;
+  }
+}
+
+.generic {
+  padding: 80px 20px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+
+    a {
+      color: #6FADE9;
+      text-decoration: underline;
+    }
+  }
+
+  .heading {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    &.small-margin {
+      margin-bottom: 10px;
+    }
+
+  }
+
+  .cell {
+    background: #fff;
+    border-bottom: 1px solid #EEF0F4;
+    padding: 20px;
+
+    a {
+      text-decoration: none;
+      color: #6FADE9;
+    }
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
+  }
+
+
+
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.form {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  background: #fff;
+  padding: 40px 20px;
+  margin: 80px auto;
+  width: 600px;
+
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+
+}
+
+.form-styles {
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+    background: #eee;
+    border-radius: 5px;
+    border: 0;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  textarea {
+    height: 200px;
+  }
+
+  .actions {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  input[type="submit"] {
+    display: inline-block;
+    background: #6FADE9;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    .checkboxes {
+      label {
+        display: inline;
+        font-weight: 400;
+      }
+      .checkbox {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+
+strong {
+  font-weight: 600;
+}
+
+.ticket-details p {
+  margin-bottom: 10px;
+  &:last-of-type { margin-bottom: 0; }
+}

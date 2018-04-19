@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_18_160110) do
+ActiveRecord::Schema.define(version: 201804181601101) do
 
   create_table "comments", force: :cascade do |t|
     t.string "user_id"
@@ -26,11 +26,20 @@ ActiveRecord::Schema.define(version: 2018_04_18_160110) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "team_id"
+    t.index ["team_id"], name: "index_projects_on_team_id"
   end
 
-  create_table "projects_users", id: false, force: :cascade do |t|
+  create_table "teams", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams_users", id: false, force: :cascade do |t|
+    t.integer "team_id", null: false
     t.integer "user_id", null: false
-    t.integer "project_id", null: false
   end
 
   create_table "ticket_comments", force: :cascade do |t|
@@ -52,6 +61,7 @@ ActiveRecord::Schema.define(version: 2018_04_18_160110) do
     t.date "due_date"
     t.string "status"
     t.integer "project_id"
+    t.index ["project_id"], name: "index_tickets_on_project_id"
   end
 
   create_table "users", force: :cascade do |t|

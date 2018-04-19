@@ -1,7 +1,6 @@
 class TicketsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :ticket_owner, only: [:edit, :update, :destroy]
 
   def index
     redirect_to root_path
@@ -20,7 +19,6 @@ class TicketsController < ApplicationController
   end
 
   def edit
-    console
     @ticket = Ticket.find(params[:id])
   end
 
@@ -38,7 +36,7 @@ class TicketsController < ApplicationController
   def update
     @ticket = Ticket.find(params[:id])
 
-    if @ticket.update(ticket_params)
+    if @ticket.update(ticket_params.merge(project_id: @ticket.project_id))
       redirect_to @ticket
     else
       render 'edit'
@@ -52,20 +50,9 @@ class TicketsController < ApplicationController
     redirect_to root_path
   end
 
-  def ticket_owner
-
-    @ticket = Ticket.find(params[:id])
-    authorize @ticket
-
-    unless @ticket.user_id == current_user.id
-      flash[:notice] = 'Access denied as you are not owner of this ticket'
-      redirect_to root_path
-    end
-  end
-
   private
     def ticket_params
-      params.require(:ticket).permit(:title, :description, :assignee_id, :due_date, :status, :project)
+      params.require(:ticket).permit(:title, :description, :assignee_id, :due_date, :status, :project_id)
     end
 
 end

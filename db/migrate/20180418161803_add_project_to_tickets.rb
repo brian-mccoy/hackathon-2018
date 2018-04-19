@@ -1,5 +1,5 @@
 class AddProjectToTickets < ActiveRecord::Migration[5.2]
   def change
-    remove_foreign_key :tickets, :project_id
+    add_reference :tickets, :project, foreign_key: true
   end
 end

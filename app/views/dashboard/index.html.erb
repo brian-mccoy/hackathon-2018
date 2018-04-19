@@ -1,38 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Tickets</h2>
+<section class="dashboard generic inner">
 
-      <ul>
-        <li><%= link_to "View All Tickets", root_path() %></li>
-        <li><%= link_to "View Tickets Assigned To Me", root_path(:assignee_id => current_user.id) %></li>
-      </ul>
-
-      <% if @tickets.count > 0 %>
-        <h4>No Rush</h4>
-        <hr>
+  <% if @tickets.count > 0 %>
+    <section class="title-card margin-bottom">
+      <section class="title">No Rush</section>
+      <section class="card">
         <% @tickets.each do |ticket| %>
           <%= render :partial => '/tickets/row', :locals => { :ticket => ticket } %>
         <% end %>
+      </section>
+    </section><!-- / title-card -->
+  <% end %>
 
-      <% end %>
-
-      <% if @sorted_tickets.count > 0 %>
-
-        <% @sorted_tickets.each do |due_date, tickets| %>
-          <hr>
-          <h4><%= due_date %></h4>
-          <hr>
+  <% if @sorted_tickets.count > 0 %>
+    <% @sorted_tickets.each do |due_date, tickets| %>
+      <section class="title-card margin-bottom">
+        <section class="title"><%= due_date %></section>
+        <section class="card">
           <% tickets.each do |ticket| %>
             <%= render :partial => '/tickets/row', :locals => { :ticket => ticket } %>
           <% end %>
-        <% end %>
+        </section>
+      </section><!-- / title-card -->
+    <% end %>
+  <% end %>
 
-      <% end %>
-
-      <hr>
-      <strong><%= link_to 'Want to create a ticket?', new_ticket_url %></strong>
-
-    </div>
-  </div>
-</div>
+  <% if @tickets.count == 0 && @sorted_tickets.count == 0 %>
+    <div class="cell"><%= link_to 'Want to create a team?', new_team_path %></div>
+  <% end %>
+</section><!-- / inner -->

@@ -1,47 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Phases</title>
+    <title>pmit</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
   </head>
 
   <body>
 
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+    <header>
 
-          <%= link_to "Phases", root_path, class: 'navbar-brand' %>
+      <div class="inner">
 
-        </div>
+        <%= link_to root_path, class: 'logo' do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136.72 59.2"><defs><style>.cls-1{fill:none;}.cls-2{fill:#fff;}.cls-3{fill:#ff5722;}</style></defs><title>Asset 1</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M16.47,11.21H12.89V23h2.53a6.92,6.92,0,0,0,5-1.76,6.38,6.38,0,0,0,1.85-4.85Q22.24,11.21,16.47,11.21Z"/><path class="cls-1" d="M110.7,40.41c0,.13-.06.25-.08.38-.47,2.16-.78,3.77-1,5,.47-.53,1-1.13,1.53-1.78,0-.66,0-1.33,0-2,0-.49,0-1,0-1.48Z"/><path class="cls-1" d="M99.32,28.63h0v0Z"/><path class="cls-2" d="M32.41,4.25Q27.54,0,17.79,0H0V51.4H13.89v-17h3.9q9.34,0,14.43-4.7t5.08-13.3Q37.3,8.5,32.41,4.25Zm-11,17a6.92,6.92,0,0,1-5,1.76H13.89V11.21h3.58q5.78,0,5.77,5.21A6.38,6.38,0,0,1,21.39,21.27Z"/><path class="cls-2" d="M59.26,0H40.77V51.4h12.3l-.73-37,10.82,37H76.38L87.07,14.45l-.53,37h7.58c-.07-.74-.11-1.49-.11-2.28a48,48,0,0,1,.74-7.57,70.14,70.14,0,0,1,1.88-8.36,8.77,8.77,0,0,1,2.67-4.55v0a8.17,8.17,0,0,1-2.41-6.08,8.33,8.33,0,0,1,2.41-5.95V0H80.78L70.27,32.86Z"/><path class="cls-3" d="M100.89,22.54a4.24,4.24,0,0,0,1.26,3.27A5.38,5.38,0,0,0,105.93,27a5.94,5.94,0,0,0,4.14-1.41,4.88,4.88,0,0,0,1.56-3.81,3.66,3.66,0,0,0-1.38-3.06,5.67,5.67,0,0,0-3.6-1.08A6.11,6.11,0,0,0,102.54,19,4.43,4.43,0,0,0,100.89,22.54Z"/><path class="cls-3" d="M133.35,49.84a1.94,1.94,0,0,0-1.31.6,9.52,9.52,0,0,1-2.4,1.56,5.73,5.73,0,0,1-2.29.6,3.89,3.89,0,0,1-2.9-1.05,6.57,6.57,0,0,1-1.5-3.48,38.15,38.15,0,0,1-.45-6.75c0-1.12,0-2.68.12-4.68h7.31q6.8,0,6.79-4.14a2.26,2.26,0,0,0-.42-1.56,1.9,1.9,0,0,0-1.38-.42H128.2q7.78-6.9,7.8-16.2a10.06,10.06,0,0,0-1.44-5.58,4.49,4.49,0,0,0-4-2.22c-2.28,0-4.42,1.08-6.39,3.24a26.85,26.85,0,0,0-5.07,8.7A57.15,57.15,0,0,0,116,30.52H112.6c-1.8,0-2.71,1.12-2.71,3.36a2.92,2.92,0,0,0,.64,2.1,3.37,3.37,0,0,0,2.43.66h2.34q-.18,2.7-.18,5.34a36.34,36.34,0,0,0,.17,3.7,2.55,2.55,0,0,0-.9.68,53.7,53.7,0,0,1-4.32,4.74,4.52,4.52,0,0,1-2.7,1.5,1.67,1.67,0,0,1-1.62-1,6.33,6.33,0,0,1-.48-2.76,51.89,51.89,0,0,1,1.44-8.94,47,47,0,0,0,1.14-7q0-2-3.06-2a4.61,4.61,0,0,0-2.88.72,5.08,5.08,0,0,0-1.44,2.64,64.71,64.71,0,0,0-1.77,7.89A44.8,44.8,0,0,0,98,49.12a13.4,13.4,0,0,0,1.77,7.32,6.24,6.24,0,0,0,5.67,2.76q5.16,0,11.1-7.26l0-.07a17.61,17.61,0,0,0,1.16,2.56,8.85,8.85,0,0,0,8.34,4.77,10.81,10.81,0,0,0,7.08-2.58,4.56,4.56,0,0,0,1.35-1.8A5.71,5.71,0,0,0,135,52.6a4,4,0,0,0-.44-2A1.34,1.34,0,0,0,133.35,49.84Zm-8.48-29.07a31.35,31.35,0,0,1,2.1-6.24c.74-1.5,1.41-2.25,2-2.25.88,0,1.33,1.18,1.33,3.54a16.82,16.82,0,0,1-1.77,6.93,20.62,20.62,0,0,1-5.31,6.87A81.18,81.18,0,0,1,124.87,20.77Z"/></g></g></svg>
+        <% end %>
 
+        <nav>
+          <% if user_signed_in? %>
+            <%= link_to 'Teams', teams_path %>
+            <%= link_to 'Projects', projects_path %>
+            <%= link_to 'Account', edit_user_registration_path %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "Register", new_user_registration_path %>
+            <%= link_to "Login", user_session_path %>
+          <% end %>
+        </nav>
 
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              <li><%= link_to 'New Ticket', new_ticket_path %></li>
-              <li><%= link_to 'Projects', projects_path %></li>
-              <li><%= link_to 'Account', edit_user_registration_path %></li>
-              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-            <% else %>
-              <li><%= link_to "Register", new_user_registration_path %></li>
-              <li><%= link_to "Login", user_session_path %></li>
-            <% end %>
+      </div>
 
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+    </header>
 
     <%= yield %>
 

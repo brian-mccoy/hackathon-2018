@@ -1,14 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Projects</h2>
-      <%= link_to 'New Project', new_project_path %>
+<div class="inner">
+  <section class="generic">
 
-      <% @projects.each do |project| %>
-        <div>
-          <%= link_to project.title, project_path(project) %>
+    <section class="heading">
+      <h2>Your Projects</h2>
+    </section>
+
+    <% @projects_grouped_by_team.each do |team| %>
+      <section class="heading">
+        <h2><%= link_to team.title, team_url(team) %></h2>
+        <nav><%= link_to 'Create Project', new_project_url(:team_id => team.id), class: 'highlight blue' %></nav>
+      </section>
+
+      <% if team.projects.any? %>
+        <div class="projects margin-bottom">
+          <% team.projects.each do |project| %>
+            <div class="cell">
+              <%= link_to project.title, project_path(project) %>
+            </div>
+          <% end %>
         </div>
       <% end %>
-    </div>
-  </div>
+    <% end %>
+
+  </section>
 </div>

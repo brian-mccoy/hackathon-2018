@@ -1,0 +1,38 @@
+<div class="inner">
+  <section class="generic">
+
+    <section class="heading">
+      <h2><%= @team.title  %></h2>
+      <nav><%= link_to 'Edit', edit_team_path(@team), class: 'highlight blue' %> <%= link_to 'Delete', team_path(@team),
+          method: :delete,
+          data: { confirm: 'Are you sure?' }, class: 'highlight blue' %></nav>
+    </section>
+
+    <% if @team.description? %>
+      <section class="cell margin-bottom"><p><%= @team.description %></p></section>
+    <% end %>
+
+    <h2 class="margin-bottom">Team Details</h2>
+
+    <% if @team.users %>
+      <div class="cell margin-bottom">
+        <strong>Members: </strong><%= @team.users.map(&:display_name).join(', ') %>
+      </div>
+    <% end %>
+
+    <section class="heading">
+      <h2>Projects</h2>
+      <nav><%= link_to 'Create Project', new_project_url(:team_id => @team.id), class: 'highlight blue' %></nav>
+    </section>
+
+    <% if @projects.any? %>
+      <% @projects.each do |project| %>
+        <div class="cell"><%= link_to project.title, project_path(project) %></div>
+      <% end %>
+    <% else %>
+      <div class="cell">Looks like you don't have any projects. <%= link_to 'Would you like to create one?', new_project_url(:team_id => @team.id) %></div>
+    <% end %>
+
+  </section>
+
+</div>

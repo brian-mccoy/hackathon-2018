@@ -1,18 +1,12 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-6"><strong><%= comment.user.display_name %> says:</strong></div>
-      <div class="col-md-6">
-        <% if policy(comment).update? %>
-          <%= link_to 'Delete', [comment.ticket, comment],
-                 method: :delete,
-                 data: { confirm: 'Are you sure?' } %>
-        <% end %>
-      </div>
-    </div>
-    <hr>
-    <%= comment.description %>
-    <hr>
-    Posted at <%= comment.created_at %>
-  </div>
-</div>
+<section class="heading small-margin">
+  <strong><%= comment.user.display_name %> says:</strong>
+  <nav><% if policy(comment).update? %>
+    <%= link_to 'Delete', [comment.ticket, comment],
+           method: :delete,
+           data: { confirm: 'Are you sure?' },
+           class: 'highlight blue' %>
+  <% end %></nav>
+</section>
+<section class="cell margin-bottom">
+  <p><%= comment.description %></p>
+</section>

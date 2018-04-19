@@ -1,0 +1,15 @@
+<div class="inner">
+  <section class="generic">
+
+    <section class="heading">
+      <h2>Your Teams</h2>
+      <nav><%= link_to 'New Team', new_team_path, class: 'highlight blue' %></nav>
+    </section>
+
+    <% @teams.each do |team| %>
+      <div class="cell">
+        <%= link_to team.title, team_path(team) %>
+      </div>
+    <% end %>
+  </section>
+</div>
